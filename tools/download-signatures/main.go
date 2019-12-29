@@ -31,6 +31,7 @@ func main() {
 		if err := cmd("curl", "-f", "-o", destinationPath, "-z", destinationPath, url); err != nil {
 			if exiterr, ok := err.(*exec.ExitError); ok && exiterr.ProcessState.ExitCode() == 22 {
 				// no need to panic if document is simply unavailable (404)
+				// FIXME produce empty file once these can be handled appropriately
 				continue
 			}
 			panic(err.Error())

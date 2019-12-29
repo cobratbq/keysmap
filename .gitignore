@@ -11,3 +11,4 @@
 /tools/extract-keyid/extract-keyid
 /tools/extract-fingerprint/extract-fingerprint
 /tools/download-metadata/download-metadata
+/tools/download-signatures/download-signatures
