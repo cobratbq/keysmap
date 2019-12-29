@@ -29,6 +29,10 @@ func main() {
 		destinationPath := path.Join(*destination, name)
 		os.Stderr.WriteString(destinationPath + "\n")
 		if err := cmd("curl", "-f", "-o", destinationPath, "-z", destinationPath, url); err != nil {
+			if exiterr, ok := err.(*exec.ExitError); ok && exiterr.ProcessState.ExitCode() == 22 {
+				// no need to panic if document is simply unavailable (404)
+				continue
+			}
 			panic(err.Error())
 		}
 	}
