@@ -17,7 +17,7 @@ extract-fingerprint: tools/extract-fingerprint/*
 
 keyring/pubring.kbx: artifact-signatures extract-keyid
 	umask 0077 && mkdir -p keyring
-	ls artifact-signatures | (while read sig; do ./extract-keyid < "artifact-signatures/$$sig"; done) | sort | uniq | xargs gpg --recv-keys
+	find artifact-signatures -type f -exec sh -c './extract-keyid < "{}"' \; | sort | uniq | xargs gpg --recv-keys
 	touch keyring/pubring.kbx
 
 extract-keyid: tools/extract-keyid/*
@@ -25,7 +25,7 @@ extract-keyid: tools/extract-keyid/*
 
 artifact-signatures: artifact-metadata download-signatures
 	mkdir -p artifact-signatures
-	ls artifact-metadata | while read artifact; do ./download-signatures -d artifact-signatures < "artifact-metadata/$$artifact"; done
+	find artifact-metadata -type f -exec sh -c './download-signatures -d artifact-signatures < "{}"' \;
 	touch artifact-signatures
 
 artifact-metadata: artifacts.txt download-metadata
