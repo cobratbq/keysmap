@@ -42,10 +42,8 @@ func main() {
 		artifactID := matches[2]
 		url := generateMetadataURL(groupID, artifactID)
 		destFile := filepath.Join(*destination, strings.Join([]string{groupID, ":", artifactID, ".xml"}, ""))
-		if err := cmd("curl", "-f", "-z", destFile, "-o", destFile, url); err != nil {
-			os.Stderr.WriteString("error downloading '" + url + "': " + err.Error())
-			continue
-		}
+		err := cmd("curl", "-f", "-z", destFile, "-o", destFile, url)
+		expectSuccess(err, "Failed to download metadata for artifact " + groupID + ":" + artifactID)
 	}
 	if err != io.EOF {
 		panic(err.Error())
@@ -73,4 +71,10 @@ func cmd(command ...string) error {
 	wg.Wait()
 	os.Stderr.Write([]byte{'\n'})
 	return err
+}
+
+func expectSuccess(err error, msg string) {
+	if err != nil {
+		panic(msg + ": " + err.Error())
+	}
 }
