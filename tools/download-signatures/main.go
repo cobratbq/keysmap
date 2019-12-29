@@ -28,7 +28,7 @@ func main() {
 		name := generateName(metadata.GroupID, metadata.ArtifactID, version)
 		destinationPath := path.Join(*destination, name)
 		os.Stderr.WriteString(destinationPath + "\n")
-		if err := cmd("curl", "-o", destinationPath, "-z", destinationPath, url); err != nil {
+		if err := cmd("curl", "-f", "-o", destinationPath, "-z", destinationPath, url); err != nil {
 			panic(err.Error())
 		}
 	}

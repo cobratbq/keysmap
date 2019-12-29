@@ -2,21 +2,25 @@ export GNUPGHOME=keyring
 
 .PHONY: validate
 validate: pgp-keys.map signatures
+	test $$(ls signatures | wc -l) -ge 2 || (echo "Require at least 2 valid signatures."; exit 1)
 	ls signatures | while read sigfile; do gpg --verify "signatures/$$sigfile" pgp-keys.map; done
 
 signatures:
 	mkdir -p signatures
 
-pgp-keys.map: artifact-signatures keyring
-	touch pgp-keys.map
+pgp-keys.map: artifact-signatures keyring/pubring.kbx extract-keyid extract-fingerprint
+	ls artifact-signatures | (while read sig; do (./extract-keyid < "artifact-signatures/$$sig") | xargs gpg -a --export | ./extract-fingerprint | xargs echo "$$(basename $$sig .asc) ="; done) > pgp-keys.map
 
-.PHONY: keyring
-keyring: keyring/pubring.kbx
-	touch keyring
+extract-fingerprint: tools/extract-fingerprint/*
+	go build -o extract-fingerprint ./tools/extract-fingerprint
 
-keyring/pubring.kbx: artifact-signatures 
+keyring/pubring.kbx: artifact-signatures extract-keyid
 	umask 0077 && mkdir -p keyring
-	ls artifact-signatures | (while read sig; do go run ./tools/extract-keyid//main.go < "artifact-signatures/$$sig"; done) | sort | uniq | xargs gpg --recv-keys
+	ls artifact-signatures | (while read sig; do ./extract-keyid < "artifact-signatures/$$sig"; done) | sort | uniq | xargs gpg --recv-keys
+	touch keyring/pubring.kbx
+
+extract-keyid: tools/extract-keyid/*
+	go build -o extract-keyid ./tools/extract-keyid
 
 artifact-signatures: artifact-metadata download-signatures
 	mkdir -p artifact-signatures
@@ -42,5 +46,5 @@ clean:
 distclean: clean
 	# For distclean we also remove existing signatures, as we assume updated
 	# metadata will produce an invalid (updated) pgp-keys.map anyways.
-	rm -rf artifact-signatures artifact-metadata signatures download-metadata download-signatures keyring
+	rm -rf artifact-signatures artifact-metadata signatures download-metadata download-signatures keyring extract-fingerprint extract-keyid
 

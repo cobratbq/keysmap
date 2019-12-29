@@ -1,7 +1,10 @@
 /pgp-keys.map
 /download-metadata
 /download-signatures
+/extract-keyid
+/extract-fingerprint
 
 /artifact-metadata
 /artifact-signatures
 /signatures
+/keyring

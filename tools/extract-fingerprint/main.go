@@ -13,13 +13,13 @@ func main() {
 	expectSuccess(err)
 	pkt, err := packet.NewReader(block.Body).Next()
 	expectSuccess(err)
-	switch sig := pkt.(type) {
-	case *packet.Signature:
-		os.Stdout.WriteString(fmt.Sprintf("%016x\n", *sig.IssuerKeyId))
-	case *packet.SignatureV3:
-		os.Stdout.WriteString(fmt.Sprintf("%016x\n", sig.IssuerKeyId))
+	switch key := pkt.(type) {
+	case *packet.PublicKey:
+		os.Stdout.WriteString(fmt.Sprintf("0x%040x", key.Fingerprint))
+	case *packet.PublicKeyV3:
+		os.Stdout.WriteString(fmt.Sprintf("0x%040x", key.Fingerprint))
 	default:
-		panic(fmt.Sprintf("Unsupported type: %#v", sig))
+		panic(fmt.Sprintf("Unsupported type: %#v", key))
 	}
 }
 
