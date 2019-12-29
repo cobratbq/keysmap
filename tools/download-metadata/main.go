@@ -41,7 +41,8 @@ func main() {
 		groupID := matches[1]
 		artifactID := matches[2]
 		url := generateMetadataURL(groupID, artifactID)
-		if err := cmd("wget", "-O", filepath.Join(*destination, strings.Join([]string{groupID, ":", artifactID, ".xml"}, "")), url); err != nil {
+		destFile := filepath.Join(*destination, strings.Join([]string{groupID, ":", artifactID, ".xml"}, ""))
+		if err := cmd("curl", "-z", destFile, "-o", destFile, url); err != nil {
 			os.Stderr.WriteString("error downloading '" + url + "': " + err.Error())
 			continue
 		}
