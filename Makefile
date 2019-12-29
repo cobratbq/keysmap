@@ -29,5 +29,5 @@ clean:
 distclean: clean
 	# For distclean we also remove existing signatures, as we assume updated
 	# metadata will produce an invalid (updated) pgp-keys.map anyways.
-	rm -rf artifact-signatures artifact-metadata signatures
+	rm -rf artifact-signatures artifact-metadata signatures download-metadata
 
