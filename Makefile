@@ -1,15 +1,16 @@
 export GNUPGHOME=keyring
 
 .PHONY: validate
-validate: pgp-keys.map signatures
+validate: pgp-keys.map
+	@mkdir -p signatures
 	@test $$(ls signatures | wc -l) -ge 2 || (echo "ERROR: requires at least 2 valid signatures."; exit 1)
-	ls signatures | while read sigfile; do gpg --verify "signatures/$$sigfile" pgp-keys.map; done
-
-signatures:
-	mkdir -p signatures
+	find signatures -type f -exec gpg --verify "{}" pgp-keys.map \;
 
 pgp-keys.map: artifact-signatures keyring/pubring.kbx extract-keyid extract-fingerprint
-	ls artifact-signatures | (while read sig; do (./extract-keyid < "artifact-signatures/$$sig") | xargs gpg -a --export | ./extract-fingerprint | xargs echo "$$(basename $$sig .asc) ="; done) > pgp-keys.map
+	(find artifact-signatures -maxdepth 1 -type f -empty -exec sh -c 'echo $$(basename "{}" .asc) =' \; ; \
+		find artifact-signatures -maxdepth 1 -type f ! -empty | while read sig; do \
+		./extract-keyid < "$$sig" | xargs gpg -a --export | ./extract-fingerprint | xargs echo "$$(basename $$sig .asc) ="; done) \
+		| sort > pgp-keys.map
 
 extract-fingerprint: tools/extract-fingerprint/*
 	go build -o extract-fingerprint ./tools/extract-fingerprint
