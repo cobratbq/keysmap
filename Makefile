@@ -2,7 +2,7 @@ export GNUPGHOME=keyring
 
 .PHONY: validate
 validate: pgp-keys.map signatures
-	test $$(ls signatures | wc -l) -ge 2 || (echo "Require at least 2 valid signatures."; exit 1)
+	@test $$(ls signatures | wc -l) -ge 2 || (echo "ERROR: requires at least 2 valid signatures."; exit 1)
 	ls signatures | while read sigfile; do gpg --verify "signatures/$$sigfile" pgp-keys.map; done
 
 signatures:
