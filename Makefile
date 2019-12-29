@@ -1,3 +1,4 @@
+export GNUPGHOME=keyring
 
 .PHONY: validate
 validate: pgp-keys.map signatures
@@ -6,17 +7,29 @@ validate: pgp-keys.map signatures
 signatures:
 	mkdir -p signatures
 
-pgp-keys.map: artifact-signatures
-	touch -r artifact-signatures pgp-keys.map
+pgp-keys.map: artifact-signatures keyring
+	touch pgp-keys.map
 
-artifact-signatures: artifact-metadata
+.PHONY: keyring
+keyring: keyring/pubring.kbx
+	touch keyring
+
+keyring/pubring.kbx: artifact-signatures 
+	umask 0077 && mkdir -p keyring
+	ls artifact-signatures | (while read sig; do go run ./tools/extract-keyid//main.go < "artifact-signatures/$$sig"; done) | sort | uniq | xargs gpg --recv-keys
+
+artifact-signatures: artifact-metadata download-signatures
 	mkdir -p artifact-signatures
-	touch -r artifact-metadata artifact-signatures
+	ls artifact-metadata | while read artifact; do ./download-signatures -d artifact-signatures < "artifact-metadata/$$artifact"; done
+	touch artifact-signatures
 
 artifact-metadata: artifacts.txt download-metadata
 	mkdir -p artifact-metadata
 	./download-metadata -d artifact-metadata < artifacts.txt
-	touch -r artifacts.txt artifact-metadata
+	touch artifact-metadata
+
+download-signatures: tools/download-signatures/*
+	go build -o download-signatures ./tools/download-signatures
 
 download-metadata: tools/download-metadata/*
 	go build -o download-metadata ./tools/download-metadata
@@ -29,5 +42,5 @@ clean:
 distclean: clean
 	# For distclean we also remove existing signatures, as we assume updated
 	# metadata will produce an invalid (updated) pgp-keys.map anyways.
-	rm -rf artifact-signatures artifact-metadata signatures download-metadata
+	rm -rf artifact-signatures artifact-metadata signatures download-metadata download-signatures keyring
 
