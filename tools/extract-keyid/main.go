@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
 
 	"golang.org/x/crypto/openpgp/armor"
@@ -10,7 +11,11 @@ import (
 
 func main() {
 	block, err := armor.Decode(os.Stdin)
-	expectSuccess(err)
+	if err == io.EOF {
+		return
+	} else if err != nil {
+		panic("Unexpected error: " + err.Error())
+	}
 	pkt, err := packet.NewReader(block.Body).Next()
 	expectSuccess(err)
 	switch sig := pkt.(type) {
