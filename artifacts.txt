@@ -1,0 +1,3 @@
+org.apache.maven.plugins:maven-compiler-plugin
+org.apache.maven.plugins:maven-install-plugin
+

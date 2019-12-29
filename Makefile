@@ -13,9 +13,13 @@ artifact-signatures: artifact-metadata
 	mkdir -p artifact-signatures
 	touch -r artifact-metadata artifact-signatures
 
-artifact-metadata: artifacts.txt
+artifact-metadata: artifacts.txt download-metadata
 	mkdir -p artifact-metadata
+	./download-metadata -d artifact-metadata < artifacts.txt
 	touch -r artifacts.txt artifact-metadata
+
+download-metadata: tools/download-metadata/*
+	go build -o download-metadata ./tools/download-metadata
 
 .PHONY: clean
 clean:
