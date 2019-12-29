@@ -8,9 +8,9 @@ validate: pgp-keys.map
 
 pgp-keys.map: artifact-signatures keyring/pubring.kbx extract-keyid extract-fingerprint
 	(find artifact-signatures -maxdepth 1 -type f -empty -exec sh -c 'echo $$(basename "{}" .asc) =' \; ; \
-		find artifact-signatures -maxdepth 1 -type f ! -empty | while read sig; do \
-		./extract-keyid < "$$sig" | xargs gpg -a --export | ./extract-fingerprint | xargs echo "$$(basename $$sig .asc) ="; done) \
-		| sort > pgp-keys.map
+		find artifact-signatures -maxdepth 1 -type f ! -empty \
+		-exec sh -c './extract-keyid < "{}" | xargs gpg -a --export | ./extract-fingerprint | xargs echo "$$(basename "{}" .asc) ="' \; \
+		) | sort > pgp-keys.map
 
 extract-fingerprint: tools/extract-fingerprint/*
 	go build -o extract-fingerprint ./tools/extract-fingerprint
