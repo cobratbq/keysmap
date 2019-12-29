@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 	"os"
 
 	"golang.org/x/crypto/openpgp/armor"
@@ -26,6 +27,7 @@ func main() {
 	default:
 		panic(fmt.Sprintf("Unsupported type: %#v", key))
 	}
+	io.Copy(ioutil.Discard, block.Body)
 }
 
 func expectSuccess(err error) {
