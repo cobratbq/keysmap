@@ -27,14 +27,15 @@ func main() {
 		url := generateURL(metadata.GroupID, metadata.ArtifactID, version)
 		name := generateName(metadata.GroupID, metadata.ArtifactID, version)
 		destinationPath := path.Join(*destination, name)
-		os.Stderr.WriteString(destinationPath + "\n")
 		if err := cmd("curl", "-f", "-o", destinationPath, "-z", destinationPath, url); err != nil {
 			if exiterr, ok := err.(*exec.ExitError); ok && exiterr.ProcessState.ExitCode() == 22 {
 				// no need to panic if document is simply unavailable (404)
-				// FIXME produce empty file once these can be handled appropriately
+				f, err := os.Create(destinationPath)
+				expectSuccess(err, "Failed to create empty file " + destinationPath)
+				f.Close()
 				continue
 			}
-			panic(err.Error())
+			panic("Failed to download " + destinationPath + ": " + err.Error())
 		}
 	}
 }
@@ -76,4 +77,10 @@ func cmd(command ...string) error {
 	wg.Wait()
 	os.Stderr.Write([]byte{'\n'})
 	return err
+}
+
+func expectSuccess(err error, msg string) {
+	if err != nil {
+		panic(msg + ": " + err.Error())
+	}
 }
