@@ -21,9 +21,9 @@ func main() {
 	expectSuccess(err)
 	switch sig := pkt.(type) {
 	case *packet.Signature:
-		os.Stdout.WriteString(fmt.Sprintf("%016x\n", *sig.IssuerKeyId))
+		os.Stdout.WriteString(fmt.Sprintf("%016X\n", *sig.IssuerKeyId))
 	case *packet.SignatureV3:
-		os.Stdout.WriteString(fmt.Sprintf("%016x\n", sig.IssuerKeyId))
+		os.Stdout.WriteString(fmt.Sprintf("%016X\n", sig.IssuerKeyId))
 	default:
 		panic(fmt.Sprintf("Unsupported type: %#v", sig))
 	}

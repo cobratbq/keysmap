@@ -21,9 +21,9 @@ func main() {
 	expectSuccess(err)
 	switch key := pkt.(type) {
 	case *packet.PublicKey:
-		os.Stdout.WriteString(fmt.Sprintf("0x%040x", key.Fingerprint))
+		os.Stdout.WriteString(fmt.Sprintf("0x%040X", key.Fingerprint))
 	case *packet.PublicKeyV3:
-		os.Stdout.WriteString(fmt.Sprintf("0x%040x", key.Fingerprint))
+		os.Stdout.WriteString(fmt.Sprintf("0x%040X", key.Fingerprint))
 	default:
 		panic(fmt.Sprintf("Unsupported type: %#v", key))
 	}
