@@ -1,3 +1,5 @@
+
+com.github.spotbugs:spotbugs-maven-plugin:maven-plugin
 com.google.code.findbugs:jsr305
 com.google.errorprone:error_prone_annotations
 com.pholser:junit-quickcheck-core
@@ -34,7 +36,6 @@ org.apache.maven.plugins:maven-failsafe-plugin
 org.apache.maven.plugins:maven-gpg-plugin
 org.apache.maven.plugins:maven-help-plugin
 org.apache.maven.plugins:maven-idea-plugin
-org.apache.maven.plugins:maven-install-plugin
 org.apache.maven.plugins:maven-install-plugin
 org.apache.maven.plugins:maven-invoker-plugin
 org.apache.maven.plugins:maven-jar-plugin
@@ -118,7 +119,9 @@ org.bouncycastle:bctsp-jdk15
 org.bouncycastle:bctsp-jdk15+
 org.bouncycastle:bctsp-jdk15on
 org.bouncycastle:bctsp-jdk16
+org.codehaus.mojo:versions-maven-plugin
 org.hamcrest:hamcrest-core
+org.jacoco:jacoco-maven-plugin
 org.jacoco:org.jacoco.core
 org.jacoco:org.jacoco.report
 org.javaruntype:javaruntype
@@ -128,5 +131,6 @@ org.ow2.asm:asm
 org.ow2.asm:asm-analysis
 org.ow2.asm:asm-commons
 org.ow2.asm:asm-tree
+org.simplify4u.plugins:pgpverify-maven-plugin
 org.slf4j:slf4j-api
 ru.vyarus:generics-resolver
