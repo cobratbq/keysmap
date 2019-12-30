@@ -23,12 +23,14 @@ keyring/pubring.kbx: artifact-signatures extract-keyid
 extract-keyid: tools/extract-keyid/*
 	go build -o extract-keyid ./tools/extract-keyid
 
+.PHONY: artifact-signatures
 artifact-signatures: artifact-metadata download-signatures
 	mkdir -p artifact-signatures
 	sha256sum --quiet -c artifact-signatures/checksum || (\
 		find artifact-metadata -type f -iname '*.xml' -exec sh -c './download-signatures -d artifact-signatures < "{}"' \; && \
 		sha256sum -b artifacts.txt > artifact-signatures/checksum)
 
+.PHONY: artifact-metadata
 artifact-metadata: artifacts.txt download-metadata
 	sha256sum --quiet -c artifact-metadata/checksum || (\
 		./download-metadata -d artifact-metadata < artifacts.txt && \
