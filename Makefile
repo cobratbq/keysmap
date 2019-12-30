@@ -25,13 +25,14 @@ extract-keyid: tools/extract-keyid/*
 
 artifact-signatures: artifact-metadata download-signatures
 	mkdir -p artifact-signatures
-	find artifact-metadata -type f -exec sh -c './download-signatures -d artifact-signatures < "{}"' \;
+	find artifact-metadata -type f -iname '*.xml' -exec sh -c './download-signatures -d artifact-signatures < "{}"' \;
 	touch artifact-signatures
 
-artifact-metadata: artifacts.txt download-metadata
+artifact-metadata: artifact-metadata/completed
+artifact-metadata/completed: artifacts.txt download-metadata
 	mkdir -p artifact-metadata
 	./download-metadata -d artifact-metadata < artifacts.txt
-	touch artifact-metadata
+	touch artifact-metadata/completed
 
 download-signatures: tools/download-signatures/*
 	go build -o download-signatures ./tools/download-signatures
