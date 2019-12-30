@@ -25,8 +25,9 @@ extract-keyid: tools/extract-keyid/*
 
 artifact-signatures: artifact-metadata download-signatures
 	mkdir -p artifact-signatures
-	find artifact-metadata -type f -iname '*.xml' -exec sh -c './download-signatures -d artifact-signatures < "{}"' \;
-	touch artifact-signatures
+	sha256sum --quiet -c artifact-signatures/checksum || (\
+		find artifact-metadata -type f -iname '*.xml' -exec sh -c './download-signatures -d artifact-signatures < "{}"' \; && \
+		sha256sum -b artifacts.txt > artifact-signatures/checksum)
 
 artifact-metadata: artifacts.txt download-metadata
 	sha256sum --quiet -c artifact-metadata/checksum || (\
