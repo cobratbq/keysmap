@@ -28,11 +28,12 @@ artifact-signatures: artifact-metadata download-signatures
 	find artifact-metadata -type f -iname '*.xml' -exec sh -c './download-signatures -d artifact-signatures < "{}"' \;
 	touch artifact-signatures
 
-artifact-metadata: artifact-metadata/completed
-artifact-metadata/completed: artifacts.txt download-metadata
-	mkdir -p artifact-metadata
-	./download-metadata -d artifact-metadata < artifacts.txt
-	touch artifact-metadata/completed
+artifact-metadata: artifacts.txt download-metadata
+	mkdir -p artifact-metadata && touch artifact-metadata/checksum
+	if [ ! "x$$(cat artifact-metadata/checksum)" -eq "x$$(sha256sum -b artifacts.txt)" ]; then
+		./download-metadata -d artifact-metadata < artifacts.txt
+		sha256sum -b artifacts.txt > artifact-metadata/checksum
+	fi
 
 download-signatures: tools/download-signatures/*
 	go build -o download-signatures ./tools/download-signatures
