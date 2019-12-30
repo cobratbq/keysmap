@@ -44,11 +44,11 @@ download-metadata: tools/download-metadata/*
 
 .PHONY: clean
 clean:
-	rm -rf artifact-signatures pgp-keys.map
+	rm -rf download-metadata download-signatures artifact-signatures extract-fingerprint extract-keyid pgp-keys.map
 
 .PHONY: distclean
 distclean: clean
 	# For distclean we also remove existing signatures, as we assume updated
 	# metadata will produce an invalid (updated) pgp-keys.map anyways.
-	rm -rf artifact-metadata signatures download-metadata download-signatures keyring extract-fingerprint extract-keyid
+	rm -rf artifact-metadata signatures keyring
 
