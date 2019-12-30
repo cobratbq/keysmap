@@ -3,7 +3,7 @@ export GNUPGHOME=keyring
 .PHONY: validate
 validate: pgp-keys.map
 	@mkdir -p signatures
-	@test $$(ls signatures | wc -l) -ge 2 || (echo "ERROR: requires at least 2 valid signatures."; exit 1)
+	@test $$(ls signatures | wc -l) -ge 2 || (echo "ERROR: at least 2 valid signatures are required."; exit 1)
 	find signatures -type f -exec gpg --verify "{}" pgp-keys.map \;
 
 pgp-keys.map: artifact-signatures keyring/pubring.kbx extract-keyid extract-fingerprint
@@ -41,11 +41,11 @@ download-metadata: tools/download-metadata/*
 
 .PHONY: clean
 clean:
-	rm -f pgp-keys.map
+	rm -rf artifact-signatures pgp-keys.map
 
 .PHONY: distclean
 distclean: clean
 	# For distclean we also remove existing signatures, as we assume updated
 	# metadata will produce an invalid (updated) pgp-keys.map anyways.
-	rm -rf artifact-signatures artifact-metadata signatures download-metadata download-signatures keyring extract-fingerprint extract-keyid
+	rm -rf artifact-metadata signatures download-metadata download-signatures keyring extract-fingerprint extract-keyid
 

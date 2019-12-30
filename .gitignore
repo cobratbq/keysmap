@@ -4,7 +4,6 @@
 /extract-keyid
 /extract-fingerprint
 
-/artifact-metadata
 /artifact-signatures
 /signatures
 /keyring
