@@ -7,8 +7,8 @@ validate: pgp-keys.map
 	find signatures -type f -exec gpg --verify "{}" pgp-keys.map \;
 
 pgp-keys.map: artifact-signatures keyring/pubring.kbx extract-keyid extract-fingerprint
-	(find artifact-signatures -maxdepth 1 -type f -empty -exec sh -c 'echo $$(basename "{}" .asc) =' \; ; \
-		find artifact-signatures -maxdepth 1 -type f ! -empty \
+	(find artifact-signatures -maxdepth 1 -type f -iname '*.asc' -empty -exec sh -c 'echo $$(basename "{}" .asc) =' \; ; \
+		find artifact-signatures -maxdepth 1 -type f -iname '*.asc' ! -empty \
 		-exec sh -c './extract-keyid < "{}" | xargs gpg -a --export | ./extract-fingerprint | xargs echo "$$(basename "{}" .asc) ="' \; \
 		) | sort > pgp-keys.map
 
@@ -17,7 +17,7 @@ extract-fingerprint: tools/extract-fingerprint/*
 
 keyring/pubring.kbx: artifact-signatures extract-keyid
 	umask 0077 && mkdir -p keyring
-	find artifact-signatures -type f -exec sh -c './extract-keyid < "{}"' \; | sort | uniq | xargs gpg --recv-keys
+	find artifact-signatures -type f -iname '*.asc' -exec sh -c './extract-keyid < "{}"' \; | sort | uniq | xargs gpg --recv-keys
 	touch keyring/pubring.kbx
 
 extract-keyid: tools/extract-keyid/*
