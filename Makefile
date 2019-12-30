@@ -29,11 +29,9 @@ artifact-signatures: artifact-metadata download-signatures
 	touch artifact-signatures
 
 artifact-metadata: artifacts.txt download-metadata
-	mkdir -p artifact-metadata && touch artifact-metadata/checksum
-	if [ ! "x$$(cat artifact-metadata/checksum)" -eq "x$$(sha256sum -b artifacts.txt)" ]; then
-		./download-metadata -d artifact-metadata < artifacts.txt
-		sha256sum -b artifacts.txt > artifact-metadata/checksum
-	fi
+	sha256sum --quiet -c artifact-metadata/checksum || (\
+		./download-metadata -d artifact-metadata < artifacts.txt && \
+		sha256sum -b artifacts.txt > artifact-metadata/checksum)
 
 download-signatures: tools/download-signatures/*
 	go build -o download-signatures ./tools/download-signatures
