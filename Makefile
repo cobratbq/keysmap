@@ -28,7 +28,7 @@ artifact-signatures: artifact-metadata download-signatures
 	mkdir -p artifact-signatures
 	sha256sum --quiet -c artifact-signatures/checksum || (\
 		find artifact-metadata -type f -iname '*.xml' -exec sh -c './download-signatures -d artifact-signatures < "{}"' \; && \
-		sha256sum -b artifacts.txt > artifact-signatures/checksum)
+		sha256sum -b artifact-metadata/checksum > artifact-signatures/checksum)
 
 .PHONY: artifact-metadata
 artifact-metadata: artifacts.txt download-metadata
