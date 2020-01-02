@@ -18,7 +18,16 @@ Properties:
 
 ## Usage
 
-`make validate` to verify `pgp-keys.map` with committed signatures.
+Validate keysmap by constructing a `pgp-keys.map` then validating using all signatures in `signatures`.
+
+```
+git clone https://github.com/cobratbq/pgp-keys.git
+git submodule init
+git submodule update
+make validate
+```
+
+Validation will fail in case of insufficient signatures.
 
 ## Design
 
