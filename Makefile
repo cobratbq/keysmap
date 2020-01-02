@@ -38,6 +38,7 @@ tools:
 .PHONY: clean
 clean:
 	rm -rf download-metadata download-signatures artifact-signatures extract-fingerprint extract-keyid pgp-keys.map
+	$(MAKE) -C tools clean
 
 .PHONY: distclean
 distclean: clean
