@@ -57,3 +57,4 @@ artifact-list --> artifact-metadata-cache --> artifact-signatures --> pgp-keys.m
   - Add final entries in list for undefined version of artifact with fingerprint used in most recent version to facilitate future versions.
 - Add ability to verify downloaded signatures against the actual artifacts.
 - Currently assumes `jar`-type artifact. Check if this is an issue in cases with different packaging such as `war`, `ear`, etc.
+- Consider switching to downloading the tools (with `go install ...` or so) instead of building from submodule.
