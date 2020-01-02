@@ -40,11 +40,7 @@ artifact-list --> artifact-metadata-cache --> artifact-signatures --> pgp-keys.m
 
 ## TODO
 
-- Makefile needs to take into account deleted entries in `artifacts.txt` and if so, remove metadata files no longer present.
-- Makefile needs to take into account deleted metadata when generating/refreshing `artifact-signatures`.
 - Investigate if we can intelligently skip (re)downloading PGP public keys on every run.
-- `artifact-metadata/checksum` based on `artifacts.txt` is not correct, because on-line metadata changes over time independent of this artifact list.
-- `artifact-signatures/checksum` to be based on all artifact metadata?
 - Canonicalize `pgp-keys.map`:
   - _Assumption_: groupID may be shared by multiple independent developers (`org.apache.maven.plugins`, `org.codehaus.mojo`) therefore we cannot blindly group multiple signatures under one groupID.
   - _Reduction_: version range for all artifacts with subsequent version that use the same fingerprint.

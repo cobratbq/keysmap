@@ -20,9 +20,9 @@ keyring/pubring.kbx: tools artifact-signatures
 .PHONY: artifact-signatures
 artifact-signatures: tools artifact-metadata
 	mkdir -p artifact-signatures
-	sha256sum --quiet -c artifact-signatures/checksum || (\
+	sha256sum -b artifact-metadata/* | sha256sum --quiet -c artifact-signatures/checksum || (\
 		find artifact-metadata -type f -name '*.xml' -exec sh -c 'tools/download-signatures -d artifact-signatures < "{}"' \; && \
-		ls artifact-metadata/* | xargs sha256sum -b > artifact-signatures/checksum)
+		sha256sum -b artifact-metadata/* | sha256sum -b - > artifact-signatures/checksum)
 
 .PHONY: artifact-metadata
 artifact-metadata: tools artifacts.txt
