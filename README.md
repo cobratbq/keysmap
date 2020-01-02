@@ -2,11 +2,11 @@
 
 [pgpverify-maven-plugin](https://github.com/s4u/pgpverify-maven-plugin) provides a mechanism for verifying (un)signed maven artifacts using a map of PGP public keys. This is a public repository of PGP public key fingerprints as discovered in the public Maven repository.
 
-## Trust by reproducibility
+## Trust by consensus (reproducibility)
 
 The _keysmap_ repository is constructed in such a way that multiple builds produce the byte-exact same `pgp-keys.map` file.
 
-_Trust by consensus_: builds from multiple independent locations do indeed produce the exact same `pgp-keys.map` file. As part of certifying the content, one needs only to provide his signature (as a sign of approval) of a local build. Once sufficient signatures are committed, an automated CI build performs the same operations and should be able to validate `pgp-keys.map` with all given signatures.
+__Trust by consensus__: builds from multiple independent locations do indeed produce the exact same `pgp-keys.map` file. As part of certifying the content, one needs only to provide his signature (as a sign of approval) of a local build. Once sufficient signatures are committed, an automated CI build performs the same operations and should be able to validate `pgp-keys.map` with all given signatures.
 
 Properties:
 - `artifacts.txt`: source list of artifacts to include in the keysmap.
@@ -18,7 +18,7 @@ Properties:
 
 ## Usage
 
-`make validate` to verify pgp-keys.map with committed signatures.
+`make validate` to verify `pgp-keys.map` with committed signatures.
 
 ## Design
 
@@ -42,3 +42,4 @@ artifact-list --> artifact-metadata-cache --> artifact-signatures --> pgp-keys.m
   - _Reduction_: artifactID-wildcard if (all versions of) all artifacts of a single group use the same fingerprint.  
   _This may hold for wild-carded version specifier, or version-range specifier, or specific version, as long as this holds for all artifacts._
   - Add final entries in list for undefined version of artifact with fingerprint used in most recent version to facilitate future versions.
+- Add ability to verify downloaded signatures against the actual artifacts.
