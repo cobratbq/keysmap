@@ -37,11 +37,11 @@ tools:
 
 .PHONY: clean
 clean:
-	rm -rf download-metadata download-signatures artifact-signatures extract-fingerprint extract-keyid pgp-keys.map
+	rm -rf artifact-signatures pgp-keys.map
 	$(MAKE) -C tools clean
 
-# For distclean we also remove existing signatures, as we assume updated
-# metadata will produce an invalid (updated) pgp-keys.map anyways.
+# For 'distclean' we also remove existing signatures. It is assumed that updated
+# metadata will produce an updated pgp-keys.map anyways.
 .PHONY: distclean
 distclean: clean
 	rm -rf artifact-metadata signatures keyring
