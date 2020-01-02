@@ -52,3 +52,4 @@ artifact-list --> artifact-metadata-cache --> artifact-signatures --> pgp-keys.m
   _This may hold for wild-carded version specifier, or version-range specifier, or specific version, as long as this holds for all artifacts._
   - Add final entries in list for undefined version of artifact with fingerprint used in most recent version to facilitate future versions.
 - Add ability to verify downloaded signatures against the actual artifacts.
+- Currently assumes `jar`-type artifact. Check if this is an issue in cases with different packaging such as `war`, `ear`, etc.
