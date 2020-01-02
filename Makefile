@@ -6,41 +6,34 @@ validate: pgp-keys.map
 	@test $$(ls signatures | wc -l) -ge 2 || (echo "ERROR: at least 2 valid signatures are required."; exit 1)
 	find signatures -type f -exec gpg --verify "{}" pgp-keys.map \;
 
-pgp-keys.map: artifact-signatures keyring/pubring.kbx extract-keyid extract-fingerprint
+pgp-keys.map: artifact-signatures keyring/pubring.kbx tools
 	(find artifact-signatures -maxdepth 1 -type f -iname '*.asc' -empty -exec sh -c 'echo $$(basename "{}" .asc) =' \; ; \
 		find artifact-signatures -maxdepth 1 -type f -iname '*.asc' ! -empty \
-		-exec sh -c './extract-keyid < "{}" | xargs gpg -a --export | ./extract-fingerprint | xargs echo "$$(basename "{}" .asc) ="' \; \
+		-exec sh -c 'tools/extract-keyid < "{}" | xargs gpg -a --export | tools/extract-fingerprint | xargs echo "$$(basename "{}" .asc) ="' \; \
 		) | sort > pgp-keys.map
 
-extract-fingerprint: tools/extract-fingerprint/*
-	go build -o extract-fingerprint ./tools/extract-fingerprint
-
-keyring/pubring.kbx: artifact-signatures extract-keyid
+keyring/pubring.kbx: artifact-signatures tools
 	umask 0077 && mkdir -p keyring
-	find artifact-signatures -type f -iname '*.asc' -exec sh -c './extract-keyid < "{}"' \; | sort | uniq | xargs gpg --recv-keys
+	find artifact-signatures -type f -iname '*.asc' -exec sh -c 'tools/extract-keyid < "{}"' \; | sort | uniq | xargs gpg --recv-keys
 	touch keyring/pubring.kbx
 
-extract-keyid: tools/extract-keyid/*
-	go build -o extract-keyid ./tools/extract-keyid
-
 .PHONY: artifact-signatures
-artifact-signatures: artifact-metadata download-signatures
+artifact-signatures: artifact-metadata tools
 	mkdir -p artifact-signatures
 	sha256sum --quiet -c artifact-signatures/checksum || (\
-		find artifact-metadata -type f -iname '*.xml' -exec sh -c './download-signatures -d artifact-signatures < "{}"' \; && \
+		find artifact-metadata -type f -iname '*.xml' -exec sh -c 'tools/download-signatures -d artifact-signatures < "{}"' \; && \
 		sha256sum -b artifact-metadata/checksum > artifact-signatures/checksum)
 
 .PHONY: artifact-metadata
-artifact-metadata: artifacts.txt download-metadata
+artifact-metadata: artifacts.txt tools
+	mkdir -p artifact-metadata
 	sha256sum --quiet -c artifact-metadata/checksum || (\
-		./download-metadata -d artifact-metadata < artifacts.txt && \
+		tools/download-metadata -d artifact-metadata < artifacts.txt && \
 		sha256sum -b artifacts.txt > artifact-metadata/checksum)
 
-download-signatures: tools/download-signatures/*
-	go build -o download-signatures ./tools/download-signatures
-
-download-metadata: tools/download-metadata/*
-	go build -o download-metadata ./tools/download-metadata
+.PHONY: tools
+tools:
+	$(MAKE) -C tools
 
 .PHONY: clean
 clean:
