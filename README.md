@@ -26,16 +26,15 @@ __Properties__:
 
 ## Usage
 
-Validate keysmap by constructing a `pgp-keys.map` then validating using all signatures in `signatures`.
+Validate `pgp-keys.map` by generating the file and validating it using all signatures that can be found in `signatures`.
 
 ```
-git clone https://github.com/cobratbq/pgp-keys.git
 git submodule init
 git submodule update
 make validate
 ```
 
-Validation will fail in case of insufficient signatures.
+`make validate` may fail in case an insufficient number of signatures is found.
 
 ## Design
 
@@ -56,5 +55,7 @@ artifact-list --> artifact-metadata-cache --> artifact-signatures --> pgp-keys.m
   _This may hold for wild-carded version specifier, or version-range specifier, or specific version, as long as this holds for all artifacts._
   - Add final entries in list for undefined version of artifact with fingerprint used in most recent version to facilitate future versions.
 - Add ability to verify downloaded signatures against the actual artifacts.
-- Currently assumes `jar`-type artifact. Check if this is an issue in cases with different packaging such as `war`, `ear`, etc.
+- Currently assumes `jar`-type artifact. Check if this is an issue in cases with different packaging such as `war`, `ear`, etc.  
+  _If needed to be discovered, download `pom` artifact first. Read _packaging type_ from the `pom` artifact, then download the appropriate signature file._
 - Consider switching to downloading the tools (with `go install ...` or so) instead of building from submodule.
+
