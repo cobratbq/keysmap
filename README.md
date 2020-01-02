@@ -9,12 +9,20 @@ The _keysmap_ repository is constructed in such a way that multiple builds produ
 __Trust by consensus__: builds from multiple independent locations do indeed produce the exact same `pgp-keys.map` file. As part of certifying the content, one needs only to provide his signature (as a sign of approval) of a local build. Once sufficient signatures are committed, an automated CI build performs the same operations and should be able to validate `pgp-keys.map` with all given signatures.
 
 Properties:
+
 - `artifacts.txt`: source list of artifacts to include in the keysmap.
 - `artifact-metadata`: source of (downloaded) metadata. Persisting this data locally ensures that there is a stable set of input data, ensuring reproducibility.
 - `artifact-signatures`: signatures of all artifact versions, downloaded from the Maven repository.  
   It is assumed that signatures do not disappear over time, hence will not affect reproducibility.
 - `keyring`: the local PGP keystore in which downloaded public keys are stored.  
   It is assumed that public keys do not disappear over time, hence will not affect reproducibility.
+
+Mechanism:
+
+1. Check out `keysmap` locally, a specific branch if preparing for new release.
+1. Run validation. Validation may fail if insufficient signatures are available at current time.
+1. Sign generated `pgp-keys.map`: `gpg -a --detach-sign pgp-keys.map`
+1. Create PR with `signatures/your-signature.asc`
 
 ## Usage
 
