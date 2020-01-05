@@ -34,7 +34,7 @@ artifact-metadata: tools artifacts.txt
 
 .PHONY: tools
 tools:
-	$(MAKE) -C tools
+	$(MAKE) -C tools all
 
 .PHONY: clean
 clean:
