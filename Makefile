@@ -1,4 +1,5 @@
 export GNUPGHOME=keyring
+SHA256SUM=tools/sha256sum
 
 .PHONY: validate
 validate: pgp-keys.map
@@ -20,16 +21,16 @@ keyring/pubring.kbx: tools artifact-signatures
 .PHONY: artifact-signatures
 artifact-signatures: tools artifact-metadata
 	mkdir -p artifact-signatures
-	tools/sha256sum -b artifact-metadata/* | tools/sha256sum --quiet -c artifact-signatures/checksum || (\
+	$(SHA256SUM) -b artifact-metadata/* | $(SHA256SUM) --quiet -c artifact-signatures/checksum || (\
 		find artifact-metadata -type f -name '*.xml' -exec sh -c 'tools/download-signatures -d artifact-signatures < "{}"' \; && \
-		tools/sha256sum -b artifact-metadata/* | tools/sha256sum -b - > artifact-signatures/checksum)
+		$(SHA256SUM) -b artifact-metadata/* | $(SHA256SUM) -b - > artifact-signatures/checksum)
 
 .PHONY: artifact-metadata
 artifact-metadata: tools artifacts.txt
 	mkdir -p artifact-metadata
-	tools/sha256sum --quiet -c artifact-metadata/checksum || (\
+	$(SHA256SUM) --quiet -c artifact-metadata/checksum || (\
 		tools/download-metadata -d artifact-metadata < artifacts.txt && \
-		tools/sha256sum -b artifacts.txt > artifact-metadata/checksum)
+		$(SHA256SUM) -b artifacts.txt > artifact-metadata/checksum)
 
 .PHONY: tools
 tools:
