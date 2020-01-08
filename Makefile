@@ -7,11 +7,11 @@ validate: pgp-keys.map
 	@test $$(ls signatures | wc -l) -ge 2 || (echo "ERROR: at least 2 valid signatures are required."; exit 1)
 	find signatures -type f -exec gpg --verify "{}" pgp-keys.map \;
 
-pgp-keys.map: tools artifact-signatures keyring/pubring.kbx
+pgp-keys.map: tools artifact-signatures
 	(find artifact-signatures -maxdepth 1 -type f -name '*.asc' -empty -exec sh -c 'echo $$(basename "{}" .asc) =' \; ; \
 		find artifact-signatures -maxdepth 1 -type f -name '*.asc' ! -empty \
 		-exec sh -c 'tools/extract-keyid < "{}" | xargs gpg -a --export | tools/extract-fingerprint | xargs echo "$$(basename "{}" .asc) ="' \; \
-		) | sort > pgp-keys.map
+		) | tools/canonicalize-keysmap | sort > pgp-keys.map
 
 keyring/pubring.kbx: tools artifact-signatures
 	umask 0077 && mkdir -p keyring
