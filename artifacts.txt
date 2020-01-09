@@ -1,11 +1,17 @@
+com.github.spotbugs:spotbugs
 com.github.spotbugs:spotbugs-maven-plugin:maven-plugin
 com.google.code.findbugs:jsr305
 com.google.errorprone:error_prone_annotations
+com.google.errorprone:error_prone_core
 com.pholser:junit-quickcheck-core
 com.pholser:junit-quickcheck-generators
+com.puppycrawl.tools:checkstyle
+com.uber.nullaway:nullaway
 edu.berkeley.cs.jqf:jqf-fuzz
 edu.berkeley.cs.jqf:jqf-instrument
 junit:junit
+net.sourceforge.pmd:pmd-core
+net.sourceforge.pmd:pmd-java
 ognl:ognl
 org.antlr:antlr-runtime
 org.apache.commons:commons-lang3
