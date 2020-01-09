@@ -4,7 +4,7 @@ SHA256SUM=tools/sha256sum
 .PHONY: validate
 validate: pgp-keys.map
 	@mkdir -p signatures
-	@test $$(ls signatures | wc -l) -ge 2 || (echo "ERROR: at least 2 valid signatures are required."; exit 1)
+	@test $$(find signatures -name '*.asc' | wc -l) -ge 2 || (echo "ERROR: at least 2 signatures are required."; exit 1)
 	find signatures -type f -exec gpg --verify "{}" pgp-keys.map \;
 
 pgp-keys.map: tools artifact-signatures
