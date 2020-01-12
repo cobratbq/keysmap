@@ -5,7 +5,7 @@ SHA256SUM=tools/sha256sum
 validate: pgp-keys.map
 	@mkdir -p signatures
 	@test $$(find signatures -name '*.asc' | wc -l) -ge 2 || (echo "ERROR: at least 2 signatures are required."; exit 1)
-	find signatures -type f -exec gpg --verify "{}" pgp-keys.map \;
+	GNUPGHOME= find signatures -type f -exec gpg --verify "{}" pgp-keys.map \;
 
 pgp-keys.map: tools artifact-signatures keyring/pubring.kbx
 	(find artifact-signatures -maxdepth 1 -type f -name '*.asc' -empty -exec sh -c 'echo $$(basename "{}" .asc) =' \; ; \
@@ -15,8 +15,8 @@ pgp-keys.map: tools artifact-signatures keyring/pubring.kbx
 
 keyring/pubring.kbx: tools artifact-signatures
 	umask 0077 && mkdir -p keyring
-	find artifact-signatures -type f -name '*.asc' -exec sh -c 'tools/extract-keyid < "{}"' \; | sort | uniq | xargs gpg --recv-keys
-	touch keyring/pubring.kbx
+	find artifact-signatures -type f -name '*.asc' -exec sh -c 'tools/extract-keyid < "{}"' \; | sort | uniq | \
+		while read key; do gpg -k "$$key" > /dev/null 2>&1 || echo "$$key"; done | xargs gpg --recv-keys; echo -n
 
 .PHONY: artifact-signatures
 artifact-signatures: tools artifact-metadata
