@@ -1,7 +1,8 @@
+ORIGINAL_GNUPGHOME=$(GNUPGHOME)
 SHA256SUM=tools/sha256sum
 
 .PHONY: validate
-validate: GNUPGHOME := 
+validate: GNUPGHOME := $(ORIGINAL_GNUPGHOME)
 validate: pgp-keys.map
 	@mkdir -p signatures
 	@test $$(find signatures -name '*.asc' | wc -l) -ge 2 || (echo "ERROR: at least 2 signatures are required."; exit 1)
