@@ -1,18 +1,20 @@
-export GNUPGHOME=keyring
 SHA256SUM=tools/sha256sum
 
 .PHONY: validate
+validate: GNUPGHOME := 
 validate: pgp-keys.map
 	@mkdir -p signatures
 	@test $$(find signatures -name '*.asc' | wc -l) -ge 2 || (echo "ERROR: at least 2 signatures are required."; exit 1)
-	GNUPGHOME= find signatures -type f -exec gpg --verify "{}" pgp-keys.map \;
+	find signatures -type f -exec gpg --verify "{}" pgp-keys.map \;
 
+pgp-keys.map: GNUPGHOME := keyring
 pgp-keys.map: tools artifact-signatures keyring/pubring.kbx
 	(find artifact-signatures -maxdepth 1 -type f -name '*.asc' -empty -exec sh -c 'echo $$(basename "{}" .asc) =' \; ; \
 		find artifact-signatures -maxdepth 1 -type f -name '*.asc' ! -empty \
 		-exec sh -c 'tools/extract-keyid < "{}" | xargs gpg -a --export | tools/extract-fingerprint | xargs echo "$$(basename "{}" .asc) ="' \; \
 		) | tee pgp-keys-raw.txt | tools/canonicalize-keysmap > pgp-keys.map
 
+keyring/pubring.kbx: GNUPGHOME := keyring
 keyring/pubring.kbx: tools artifact-signatures
 	umask 0077 && mkdir -p keyring
 	find artifact-signatures -type f -name '*.asc' -exec sh -c 'tools/extract-keyid < "{}"' \; | sort | uniq | \
