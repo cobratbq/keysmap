@@ -11,7 +11,7 @@ pgp-keys.map: tools artifact-signatures keyring/pubring.kbx
 	(find artifact-signatures -maxdepth 1 -type f -name '*.asc' -empty -exec sh -c 'echo $$(basename "{}" .asc) =' \; ; \
 		find artifact-signatures -maxdepth 1 -type f -name '*.asc' ! -empty \
 		-exec sh -c 'tools/extract-keyid < "{}" | xargs gpg -a --export | tools/extract-fingerprint | xargs echo "$$(basename "{}" .asc) ="' \; \
-		) | tools/canonicalize-keysmap | sort > pgp-keys.map
+		) | tee pgp-keys-raw.txt | tools/canonicalize-keysmap > pgp-keys.map
 
 keyring/pubring.kbx: tools artifact-signatures
 	umask 0077 && mkdir -p keyring
