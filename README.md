@@ -47,7 +47,6 @@ artifact-list --> artifact-metadata-cache --> artifact-signatures --> pgp-keys.m
 
 ## TODO
 
-- Investigate if we can intelligently skip (re)downloading PGP public keys on every run.
 - Canonicalize `pgp-keys.map`:
   - _Assumption_: groupID may be shared by multiple independent developers (`org.apache.maven.plugins`, `org.codehaus.mojo`) therefore we cannot blindly group multiple signatures under one groupID.
   - _Reduction_: version range for all artifacts with subsequent version that use the same fingerprint.
