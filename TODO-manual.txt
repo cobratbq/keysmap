@@ -1,0 +1,4 @@
+TODO - support manual entries
+net.jcip:jcip-annotations
+net.sourceforge.saxon:saxon
+nekohtml:xercesMinimal
