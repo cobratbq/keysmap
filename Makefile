@@ -1,25 +1,21 @@
-ORIGINAL_GNUPGHOME=$(GNUPGHOME)
+GNUPG_LOCAL=gpg --no-default-keyring --keyring ./keyring.kbx
 SHA256SUM=tools/sha256sum
 
 .PHONY: validate
-validate: GNUPGHOME := $(ORIGINAL_GNUPGHOME)
 validate: pgp-keys.map
 	@mkdir -p signatures
 	@test $$(find signatures -name '*.asc' | wc -l) -ge 2 || (echo "ERROR: at least 2 signatures are required."; exit 1)
 	find signatures -type f -exec gpg --verify "{}" pgp-keys.map \;
 
-pgp-keys.map: GNUPGHOME := keyring
-pgp-keys.map: tools artifact-signatures keyring/pubring.kbx
+pgp-keys.map: tools artifact-signatures keyring.kbx
 	(find artifact-signatures -maxdepth 1 -type f -name '*.asc' -empty -exec sh -c 'echo $$(basename "{}" .asc) =' \; ; \
 		find artifact-signatures -maxdepth 1 -type f -name '*.asc' ! -empty \
-		-exec sh -c 'tools/extract-keyid < "{}" | xargs gpg -a --export | tools/extract-fingerprint | xargs echo "$$(basename "{}" .asc) ="' \; \
+		-exec sh -c 'tools/extract-keyid < "{}" | xargs $(GNUPG_LOCAL) -a --export | tools/extract-fingerprint | xargs echo "$$(basename "{}" .asc) ="' \; \
 		) | tee pgp-keys-raw.txt | tools/canonicalize-keysmap > pgp-keys.map
 
-keyring/pubring.kbx: GNUPGHOME := keyring
-keyring/pubring.kbx: tools artifact-signatures
-	umask 0077 && mkdir -p keyring
+keyring.kbx: tools artifact-signatures
 	find artifact-signatures -type f -name '*.asc' -exec sh -c 'tools/extract-keyid < "{}"' \; | sort | uniq | \
-		while read key; do gpg -k "$$key" > /dev/null 2>&1 || echo "$$key"; done | xargs gpg --recv-keys; echo -n
+		while read key; do $(GNUPG_LOCAL) -k "$$key" > /dev/null 2>&1 || echo "$$key"; done | xargs $(GNUPG_LOCAL) --recv-keys; echo -n
 
 .PHONY: artifact-signatures
 artifact-signatures: tools artifact-metadata
@@ -47,6 +43,6 @@ clean:
 # metadata will produce an updated pgp-keys.map anyways.
 .PHONY: distclean
 distclean: clean
-	rm -rf artifact-metadata signatures keyring
+	rm -rf artifact-metadata signatures keyring.kbx keyring.kbx~
 	$(MAKE) -C tools clean
 
