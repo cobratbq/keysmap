@@ -16,7 +16,6 @@ pgp-keys.map: tools artifact-signatures keyring.kbx
 keyring.kbx: tools artifact-signatures
 	find artifact-signatures -type f -name '*.asc' -exec sh -c 'tools/extract-keyid < "{}"' \; | sort | uniq | \
 		while read key; do $(GNUPG_LOCAL) -k "$$key" > /dev/null 2>&1 || echo "$$key"; done | xargs $(GNUPG_LOCAL) --recv-keys; echo -n
-	touch keyring.kbx
 
 .PHONY: artifact-signatures
 artifact-signatures: tools artifact-metadata
@@ -38,7 +37,7 @@ tools:
 
 .PHONY: clean
 clean:
-	rm -rf pgp-keys.map
+	rm -rf pgp-keys.map pgp-keys-raw.txt
 
 # For 'distclean' we also remove existing signatures. It is assumed that updated
 # metadata will produce an updated pgp-keys.map anyways.
