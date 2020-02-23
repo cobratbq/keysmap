@@ -47,6 +47,9 @@ artifact-list --> artifact-metadata-cache --> artifact-signatures --> pgp-keys.m
 
 ## TODO
 
+- Replace environment variable for gnupg with `--no-default-keyring --keyring publickeys.kbx`
+- Reconsider (re)downloading metadata.
+- Support manual entries in case of missing or incomplete artifact metadata.
 - Canonicalize `pgp-keys.map`:
   - _Assumption_: groupID may be shared by multiple independent developers (`org.apache.maven.plugins`, `org.codehaus.mojo`) therefore we cannot blindly group multiple signatures under one groupID.
   - _Reduction_: version range for all artifacts with subsequent version that use the same fingerprint.
