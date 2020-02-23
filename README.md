@@ -60,4 +60,3 @@ artifact-list --> artifact-metadata-cache --> artifact-signatures --> pgp-keys.m
 - Currently assumes `jar`-type artifact. Check if this is an issue in cases with different packaging such as `war`, `ear`, etc.  
   _If needed to be discovered, download `pom` artifact first. Read _packaging type_ from the `pom` artifact, then download the appropriate signature file._
 - Consider switching to downloading the tools (with `go install ...` or so) instead of building from submodule.
-- Consider committing signatures as these should not change and there are *many* to download. Contributors could delete them and redownload them to verify that they correspond to the ones on the global maven repository.
