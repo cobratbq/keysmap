@@ -47,6 +47,7 @@ artifact-list --> artifact-metadata-cache --> artifact-signatures --> pgp-keys.m
 
 ## TODO
 
+- Document the purpose of each file in the whole generation process.
 - Replace environment variable for gnupg with `--no-default-keyring --keyring publickeys.kbx`
 - Reconsider (re)downloading metadata.
 - Support manual entries in case of missing or incomplete artifact metadata.
