@@ -38,6 +38,8 @@ make validate
 
 ## Design
 
+### Overview
+
 Plan for PGP keys map maintenance/validation: trust based on consensus of independent parties generating and signing the byte-exact `pgp-keys.map`.
 
 ```
@@ -45,12 +47,29 @@ Plan for PGP keys map maintenance/validation: trust based on consensus of indepe
 artifact-list --> artifact-metadata-cache --> artifact-signatures --> pgp-keys.map --> validate
 ```
 
+### Files
+
+__Foundational__:
+
+- `Makefile` The build instructions that lead up to a validateable `pgp-keys.map` file.
+- `tools` The various build tools used.
+- `artifacts.txt` The base list of artifacts to include in `pgp-keys.map`.
+- `pgp-keys-manual.txt` The manual entries to include in `pgp-keys.map`, typically due to missing maven metadata.
+
+__Generated__:
+
+- `artifact-metadata` Directory containing metadata for artifacts listed in `artifacts.txt`.
+- `artifact-signatures` Directory containing signatures for all versions of all artifacts in `artifacts.txt`, derived from artifact metadata in `artifact-metadata`.
+- `pgp-keys-generated.txt` The public key entries generated using `artifact-signatures`.
+- `keyring.kbx` (`keyring.kbx~` as backup file) The PGP public keys that were downloaded as necessary from `artifact-signatures` GPG signatures.
+
+__Result__:
+
+- `pgp-keys.map` The resulting artifact - public-key mapping for maven artifacts.
+- `signatures` The validation signatures submitted by reviewers.
+
 ## TODO
 
-- Document the purpose of each file in the whole generation process.
-- Replace environment variable for gnupg with `--no-default-keyring --keyring publickeys.kbx`
-- Reconsider (re)downloading metadata.
-- Support manual entries in case of missing or incomplete artifact metadata.
 - Canonicalize `pgp-keys.map`:
   - _Assumption_: groupID may be shared by multiple independent developers (`org.apache.maven.plugins`, `org.codehaus.mojo`) therefore we cannot blindly group multiple signatures under one groupID.
   - _Reduction_: version range for all artifacts with subsequent version that use the same fingerprint.
