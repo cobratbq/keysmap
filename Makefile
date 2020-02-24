@@ -36,14 +36,14 @@ artifact-metadata/checksum: tools/download-metadata artifacts.txt
 tools/sha256sum tools/download-metadata tools/download-signatures tools/extract-keyid tools/extract-fingerprint tools/canonicalize-keysmap:
 	$(MAKE) -C tools all
 
-.PHONY: clean
-clean:
-	rm -rf pgp-keys.map pgp-keys-generated.txt
-
 # For 'distclean' we also remove existing signatures. It is assumed that updated
 # metadata will produce an updated pgp-keys.map anyways.
 .PHONY: distclean
 distclean: clean
 	rm -rf artifact-metadata/checksum artifact-signatures/checksum signatures $(KEYRING){,~}
 	$(MAKE) -C tools clean
+
+.PHONY: clean
+clean:
+	rm -rf pgp-keys.map pgp-keys-generated.txt
 
