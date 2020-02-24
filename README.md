@@ -61,7 +61,7 @@ __Generated__:
 - `artifact-metadata` Directory containing metadata for artifacts listed in `artifacts.txt`.
   - `checksum` The SHA-256 checksum for `artifacts.txt` which allows efficient checking of the source to determine whether or not redownloading is necessary.
 - `artifact-signatures` Directory containing signatures for all versions of all artifacts in `artifacts.txt`, derived from artifact metadata in `artifact-metadata`.
-  - `checksum` The SHA-256 checksum for the contents of `artifact-metadata` to determine whether we should refresh signature files.
+  - `checksum` The SHA-256 checksum for the contents of `artifact-metadata` to determine whether we should refresh signature files. (`sha256sum -b artifact-metadata/* | sha256sum -b -`)
 - `pgp-keys-generated.txt` The public key entries generated using `artifact-signatures`.
 - `keyring.kbx` (`keyring.kbx~` as backup file) The PGP public keys that were downloaded as necessary from `artifact-signatures` GPG signatures.
 
