@@ -1,3 +1,4 @@
+javax.enterprise:cdi-api:1.0 = 0xB1FC0E1FA329669191F8306F5BCEE695141E6086
+nekohtml:xercesMinimal:1.9.6.2 =
 net.jcip:jcip-annotations:1.0 =
 net.sourceforge.saxon:saxon:9.1.0.8 =
-nekohtml:xercesMinimal:1.9.6.2 =
