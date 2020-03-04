@@ -2,10 +2,13 @@
 KEYSERVER=keyserver.ubuntu.com
 KEYRING=./keyring.kbx
 SHA256SUM=tools/sha256sum
+MAKEFLAGS += --no-builtin-rules
 
 # Composite variables.
 # Note: these variables should not be modified, unless the process fundamentally changes.
 GNUPG_LOCAL=gpg --no-default-keyring --keyring $(KEYRING) --keyserver $(KEYSERVER)
+
+.SUFFIXES:
 
 .PHONY: validate
 validate: pgp-keys.map
