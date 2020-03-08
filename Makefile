@@ -16,6 +16,10 @@ validate: pgp-keys.map
 	@test $$(find signatures -name '*.asc' | wc -l) -ge 2 || (echo "ERROR: at least 2 signatures are required."; exit 1)
 	find signatures -type f -exec gpg --verify "{}" pgp-keys.map \;
 
+.PHONY: resort-artifacts
+resort-artifacts: artifacts.txt
+	sort artifacts.txt | uniq > .artifacts.txt-sorted && mv .artifacts.txt-sorted artifacts.txt
+
 pgp-keys.map: tools/canonicalize-keysmap pgp-keys-generated.txt pgp-keys-manual.txt
 	cat pgp-keys-manual.txt pgp-keys-generated.txt | tools/canonicalize-keysmap > pgp-keys.map
 
