@@ -6,7 +6,7 @@ MAKEFLAGS += --no-builtin-rules
 
 # Composite variables.
 # Note: these variables should not be modified, unless the process fundamentally changes.
-GNUPG_LOCAL=gpg --no-default-keyring --keyring $(KEYRING) --keyserver $(KEYSERVER)
+GNUPG_LOCAL=gpg --no-options --no-default-keyring --keyring $(KEYRING) --keyserver $(KEYSERVER)
 
 .SUFFIXES:
 
