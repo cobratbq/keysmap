@@ -1,5 +1,5 @@
 # Base variables.
-KEYSERVER=keyserver.ubuntu.com
+KEYSERVER=hkps://keyserver.ubuntu.com
 KEYRING=./keyring.kbx
 SHA256SUM=tools/sha256sum
 MAKEFLAGS += --no-builtin-rules
