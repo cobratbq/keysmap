@@ -21,7 +21,7 @@ resort-artifacts: artifacts.txt
 	sort artifacts.txt | uniq > .artifacts.txt-sorted && mv .artifacts.txt-sorted artifacts.txt
 
 pgp-keys.map: tools/canonicalize-keysmap pgp-keys-generated.txt pgp-keys-manual.txt
-	cat pgp-keys-manual.txt pgp-keys-generated.txt | tools/canonicalize-keysmap > pgp-keys.map
+	(cat pgp-keys-manual.txt; echo; echo '# Generated.'; tools/canonicalize-keysmap < pgp-keys-generated.txt) > pgp-keys.map
 
 pgp-keys-generated.txt: tools/extract-keyid tools/extract-fingerprint artifact-signatures/checksum $(KEYRING)
 	(find artifact-signatures -maxdepth 1 -type f -name '*.asc' -empty -exec sh -c 'echo $$(basename "{}" .asc) =' \; ; \
