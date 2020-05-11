@@ -10,6 +10,7 @@ com.fasterxml.jackson.core:jackson-annotations
 com.fasterxml.jackson.core:jackson-core
 com.fasterxml.jackson.core:jackson-databind
 com.flipkart.zjsonpatch:zjsonpatch
+com.github.javaparser:javaparser-core
 com.github.jknack:handlebars
 com.github.kevinstern:software-and-algorithms
 com.github.oowekyala.treeutils:tree-matchers
@@ -145,6 +146,7 @@ joda-time:joda-time
 junit:junit
 log4j:log4j
 logkit:logkit
+nekohtml:nekohtml
 net.bytebuddy:byte-buddy
 net.bytebuddy:byte-buddy-agent
 net.java.dev.javacc:javacc
