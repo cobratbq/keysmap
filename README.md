@@ -82,3 +82,4 @@ __Result__:
 - Currently assumes `jar`-type artifact. Check if this is an issue in cases with different packaging such as `war`, `ear`, etc.  
   _If needed to be discovered, download `pom` artifact first. Read _packaging type_ from the `pom` artifact, then download the appropriate signature file._
 - Consider switching to downloading the tools (with `go install ...` or so) instead of building from submodule.
+- Should we do someting with revocations as downloaded from keyserver using `gpg --refresh-keys`? Is there any sense in signaling that in keysmap and warning during verification process?
