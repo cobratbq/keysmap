@@ -171,6 +171,7 @@ org.apache.bcel:bcel
 org.apache.commons:commons-collections4
 org.apache.commons:commons-compress
 org.apache.commons:commons-lang3
+org.apache.commons:commons-text
 org.apache.httpcomponents:httpclient
 org.apache.httpcomponents:httpcore
 org.apache.jackrabbit:jackrabbit-jcr-commons
