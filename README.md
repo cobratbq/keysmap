@@ -55,6 +55,7 @@ __Foundational__:
 - `tools` The various build tools used.
 - `artifacts.txt` The base list of artifacts to include in `pgp-keys.map`.
 - `pgp-keys-manual.txt` The manual entries to include in `pgp-keys.map`, typically due to missing maven metadata.
+- `pgp-keys-overrides.txt` The overrides that are prepended in the resulting `pgp-keys.map`. These overrides may contain all of keysmap line format, may overlap with generated entries, and are not included in the canonicalization process.
 
 __Generated__:
 
