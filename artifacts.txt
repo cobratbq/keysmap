@@ -205,6 +205,7 @@ org.apache.maven:maven-aether-provider
 org.apache.maven:maven-archiver
 org.apache.maven:maven-artifact
 org.apache.maven:maven-artifact-manager
+org.apache.maven:maven-builder-support
 org.apache.maven:maven-compat
 org.apache.maven:maven-core
 org.apache.maven:maven-error-diagnostics
@@ -218,6 +219,7 @@ org.apache.maven:maven-plugin-registry
 org.apache.maven:maven-profile
 org.apache.maven:maven-project
 org.apache.maven:maven-repository-metadata
+org.apache.maven:maven-resolver-provider
 org.apache.maven:maven-settings
 org.apache.maven:maven-settings-builder
 org.apache.maven:maven-toolchain
@@ -291,6 +293,10 @@ org.apache.maven.plugin-tools:maven-plugin-annotations
 org.apache.maven.reporting:maven-reporting-api
 org.apache.maven.reporting:maven-reporting-exec
 org.apache.maven.reporting:maven-reporting-impl
+org.apache.maven.resolver:maven-resolver-api
+org.apache.maven.resolver:maven-resolver-impl
+org.apache.maven.resolver:maven-resolver-spi
+org.apache.maven.resolver:maven-resolver-util
 org.apache.maven.shared:file-management
 org.apache.maven.shared:maven-artifact-transfer
 org.apache.maven.shared:maven-common-artifact-filters
