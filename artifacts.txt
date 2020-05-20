@@ -127,6 +127,8 @@ edu.berkeley.cs.jqf:jqf-instrument
 info.picocli:picocli
 io.arrow-kt:arrow-annotations
 io.arrow-kt:arrow-core
+io.github.resilience4j:resilience4j-core
+io.github.resilience4j:resilience4j-retry
 io.kindedj:kindedj
 io.kotlintest:kotlintest-assertions
 io.kotlintest:kotlintest-core
@@ -134,6 +136,8 @@ io.kotlintest:kotlintest-runner-junit5
 io.kotlintest:kotlintest-runner-jvm
 io.netty:netty-all
 io.reactivex.rxjava2:rxjava
+io.vavr:vavr
+io.vavr:vavr-match
 javax.annotation:jsr250-api
 javax.enterprise:cdi-api
 javax.inject:javax.inject
