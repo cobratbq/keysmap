@@ -596,3 +596,7 @@ xml-apis:xml-apis
 xmlpull:xmlpull
 xmlunit:xmlunit
 xpp3:xpp3_min
+org.plumelib:plume-util
+org.plumelib:reflection-util
+org.plumelib:require-javadoc
+com.github.ben-manes.caffeine:caffeine
