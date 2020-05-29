@@ -16,6 +16,7 @@ com.fasterxml.jackson.jaxrs:jackson-jaxrs-base
 com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider
 com.fasterxml.jackson.module:jackson-module-jaxb-annotations
 com.flipkart.zjsonpatch:zjsonpatch
+com.github.ben-manes.caffeine:caffeine
 com.github.fge:btf
 com.github.fge:msg-simple
 com.github.fge:uri-template
@@ -551,6 +552,9 @@ org.ow2.asm:asm-commons
 org.ow2.asm:asm-tree
 org.ow2.asm:asm-util
 org.pcollections:pcollections
+org.plumelib:plume-util
+org.plumelib:reflection-util
+org.plumelib:require-javadoc
 org.powermock:powermock-api-mockito2
 org.powermock:powermock-api-support
 org.powermock:powermock-core
@@ -596,7 +600,3 @@ xml-apis:xml-apis
 xmlpull:xmlpull
 xmlunit:xmlunit
 xpp3:xpp3_min
-org.plumelib:plume-util
-org.plumelib:reflection-util
-org.plumelib:require-javadoc
-com.github.ben-manes.caffeine:caffeine
