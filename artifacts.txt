@@ -529,6 +529,7 @@ org.jetbrains.kotlin:kotlin-test-common
 org.jetbrains.kotlin:kotlin-test-junit
 org.jmock:jmock
 org.jmock:jmock-junit4
+org.json:json
 org.jsoup:jsoup
 org.junit.jupiter:junit-jupiter-api
 org.junit.platform:junit-platform-commons
