@@ -73,6 +73,7 @@ __Result__:
 
 ## TODO
 
+- Check and respect revocations of public keys.
 - Canonicalize `pgp-keys.map`:
   - _Assumption_: groupID may be shared by multiple independent developers (`org.apache.maven.plugins`, `org.codehaus.mojo`) therefore we cannot blindly group multiple signatures under one groupID.
   - _Reduction_: version range for all artifacts with subsequent version that use the same fingerprint.
