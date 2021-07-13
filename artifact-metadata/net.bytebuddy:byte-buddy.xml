@@ -3,8 +3,8 @@
   <groupId>net.bytebuddy</groupId>
   <artifactId>byte-buddy</artifactId>
   <versioning>
-    <latest>1.11.0</latest>
-    <release>1.11.0</release>
+    <latest>1.11.6</latest>
+    <release>1.11.6</release>
     <versions>
       <version>0.1</version>
       <version>0.2</version>
@@ -221,7 +221,13 @@
       <version>1.10.21</version>
       <version>1.10.22</version>
       <version>1.11.0</version>
+      <version>1.11.1</version>
+      <version>1.11.2</version>
+      <version>1.11.3</version>
+      <version>1.11.4</version>
+      <version>1.11.5</version>
+      <version>1.11.6</version>
     </versions>
-    <lastUpdated>20210418230247</lastUpdated>
+    <lastUpdated>20210702211427</lastUpdated>
   </versioning>
 </metadata>
