@@ -4,8 +4,8 @@ org.apache.struts:struts-taglib:pom:1.3.8 = badSig
 org.apache.struts:struts-tiles:pom:1.3.8 = badSig
 
 # Packaging-specific overrides.
-commons-validator:commons-validator:pom:1.3.1 =
-commons-httpclient:commons-httpclient:pom:3.1 =
+commons-validator:commons-validator:pom:1.3.1 = noSig
+commons-httpclient:commons-httpclient:pom:3.1 = noSig
 commons-chain:commons-chain:pom:1.2 = 0x6E13156C0EE653F0B984663AB95BBD3FA43C4492
 junit:junit:pom:4.8.2 = 0x23885E64C64E981E4884834D7C535299C0F2C580
 org.apache.maven.scm:maven-scm-providers-standard:pom:1.9.4 = 0xAE9E53FC28FF2AB1012273D0BF1518E0160788A2

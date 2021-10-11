@@ -24,7 +24,7 @@ pgp-keys.map: tools/canonicalize-keysmap pgp-keys-generated.txt pgp-keys-manual.
 	(echo '# Overrides.'; cat pgp-keys-overrides.txt; echo; echo '# Generated.'; cat pgp-keys-manual.txt pgp-keys-generated.txt | tools/canonicalize-keysmap) > pgp-keys.map
 
 pgp-keys-generated.txt: tools/extract-keyid tools/extract-fingerprint artifact-signatures/checksum $(KEYRING)
-	(find artifact-signatures -maxdepth 1 -type f -name '*.asc' -empty -exec sh -c 'echo $$(basename "{}" .asc) =' \; ; \
+	(find artifact-signatures -maxdepth 1 -type f -name '*.asc' -empty -exec sh -c 'echo $$(basename "{}" .asc) = noSig' \; ; \
 		find artifact-signatures -maxdepth 1 -type f -name '*.asc' ! -empty \
 		-exec sh -c 'tools/extract-keyid < "{}" | xargs $(GNUPG_LOCAL) -a --export | (tools/extract-fingerprint || echo -n "noKey") | xargs echo "$$(basename "{}" .asc) ="' \; \
 		) > pgp-keys-generated.txt
