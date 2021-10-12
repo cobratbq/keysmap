@@ -73,6 +73,7 @@ __Result__:
 
 ## TODO
 
+- Check both key servers: hkps://keyserver.ubuntu.com hkps://subkeys.openpgp.net (or whatever the exact address is, check with pgpverify-maven-plugin)
 - Check and respect revocations of public keys.
 - Canonicalize `pgp-keys.map`:
   - _Assumption_: groupID may be shared by multiple independent developers (`org.apache.maven.plugins`, `org.codehaus.mojo`) therefore we cannot blindly group multiple signatures under one groupID.
