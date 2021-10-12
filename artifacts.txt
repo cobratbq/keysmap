@@ -1,5 +1,6 @@
 antlr:antlr
 aopalliance:aopalliance
+asm:asm
 avalon-framework:avalon-framework
 backport-util-concurrent:backport-util-concurrent
 cglib:cglib-nodep
@@ -37,7 +38,9 @@ com.github.tomakehurst:wiremock
 com.google.auto:auto-common
 com.google.auto.factory:auto-factory
 com.google.auto.service:auto-service
+com.google.auto.service:auto-service-annotations
 com.google.auto.value:auto-value
+com.google.auto.value:auto-value-annotations
 com.google.code.findbugs:jFormatString
 com.google.code.findbugs:jsr305
 com.google.code.gson:gson
@@ -150,6 +153,7 @@ edu.berkeley.cs.jqf:jqf-instrument
 info.picocli:picocli
 io.arrow-kt:arrow-annotations
 io.arrow-kt:arrow-core
+io.github.java-diff-utils:java-diff-utils
 io.github.resilience4j:resilience4j-core
 io.github.resilience4j:resilience4j-retry
 io.kindedj:kindedj
@@ -379,7 +383,9 @@ org.apache.maven.surefire:maven-surefire-common
 org.apache.maven.surefire:surefire-api
 org.apache.maven.surefire:surefire-booter
 org.apache.maven.surefire:surefire-extensions-api
+org.apache.maven.surefire:surefire-extensions-spi
 org.apache.maven.surefire:surefire-logger-api
+org.apache.maven.surefire:surefire-shared-utils
 org.apache.maven.wagon:wagon-file
 org.apache.maven.wagon:wagon-http
 org.apache.maven.wagon:wagon-http-lightweight
@@ -453,6 +459,7 @@ org.codehaus.groovy:groovy-ant
 org.codehaus.groovy:groovy-dateutil
 org.codehaus.groovy:groovy-docgenerator
 org.codehaus.groovy:groovy-groovydoc
+org.codehaus.groovy:groovy-json
 org.codehaus.groovy:groovy-templates
 org.codehaus.groovy:groovy-xml
 org.codehaus.jackson:jackson-core-asl
