@@ -1,12 +1,11 @@
 # Base variables.
-KEYSERVER=hkps://keyserver.ubuntu.com
 KEYRING=./keyring.kbx
 SHA256SUM=tools/sha256sum
 MAKEFLAGS += --no-builtin-rules
 
 # Composite variables.
 # Note: these variables should not be modified, unless the process fundamentally changes.
-GNUPG_LOCAL=gpg --no-options --no-default-keyring --keyring $(KEYRING) --keyserver $(KEYSERVER)
+GNUPG_LOCAL=gpg --no-options --no-default-keyring --keyring $(KEYRING) --keyserver hkps://keyserver.ubuntu.com --keyserver hkps://keys.openpgp.org
 
 .SUFFIXES:
 
