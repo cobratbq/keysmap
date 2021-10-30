@@ -29,6 +29,7 @@ pgp-keys-generated.txt: tools/extract-keyid tools/extract-fingerprint artifact-s
 		) > pgp-keys-generated.txt
 
 $(KEYRING): tools/extract-keyid artifact-signatures/checksum
+	$(GNUPG_LOCAL) --refresh-keys
 	find artifact-signatures -type f -name '*.asc' -exec sh -c 'tools/extract-keyid < "{}"' \; | sort | uniq | \
 		while read key; do $(GNUPG_LOCAL) -k "$$key" > /dev/null 2>&1 || echo "$$key"; done | xargs $(GNUPG_LOCAL) --recv-keys; echo -n
 	touch $(KEYRING)
