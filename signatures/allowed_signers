@@ -1,0 +1,3 @@
+# Signatures for pgp-keys.map should be called '<userid>.sig'.
+#userid namespaces="file" ssh-rsa AAAAX1...
+test namespaces="file" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHgH+51lfAlbG/fb/rqHsGwKSYVWqF7bkeQFyNayuuMd

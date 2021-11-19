@@ -6,14 +6,14 @@ MAKEFLAGS += --no-builtin-rules
 # Composite variables.
 # Note: these variables should not be modified, unless the process fundamentally changes.
 GNUPG_LOCAL=gpg --no-options --no-default-keyring --keyring $(KEYRING) --keyserver hkps://keyserver.ubuntu.com --keyserver hkps://keys.openpgp.org
+SSH_VERIFY_SIGNATURE=ssh-keygen -Y verify -f ./signatures/allowed_signers -n file
 
 .SUFFIXES:
 
 .PHONY: validate
 validate: pgp-keys.map
-	@mkdir -p signatures
-	@test $$(find signatures -name '*.asc' | wc -l) -ge 2 || (echo "ERROR: at least 2 signatures are required."; exit 1)
-	find signatures -type f -exec gpg --verify "{}" pgp-keys.map \;
+	@echo Verifying pgp-keys.map …
+	@find ./signatures -type f -name '*.sig' -exec sh -c '$(SSH_VERIFY_SIGNATURE) -I $$(basename "{}" .sig)  -s "{}" < pgp-keys.map' \;
 
 .PHONY: resort-artifacts
 resort-artifacts: artifacts.txt
