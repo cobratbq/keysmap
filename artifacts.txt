@@ -19,8 +19,10 @@ com.fasterxml.jackson.jaxrs:jackson-jaxrs-base
 com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider
 com.fasterxml.jackson.module:jackson-module-jaxb-annotations
 com.fasterxml.jackson.module:jackson-module-parameter-names
+com.fasterxml.woodstox:woodstox-core
 com.flipkart.zjsonpatch:zjsonpatch
 com.github.ben-manes.caffeine:caffeine
+com.github.cliftonlabs:json-simple
 com.github.fge:btf
 com.github.fge:msg-simple
 com.github.fge:uri-template
@@ -149,6 +151,7 @@ com.vladsch.flexmark:flexmark-ext-xwiki-macros
 com.vladsch.flexmark:flexmark-ext-yaml-front-matter
 com.vladsch.flexmark:flexmark-ext-youtube-embedded
 com.vladsch.flexmark:flexmark-formatter
+com.vladsch.flexmark:flexmark-html2md-converter
 com.vladsch.flexmark:flexmark-html-parser
 com.vladsch.flexmark:flexmark-jira-converter
 com.vladsch.flexmark:flexmark-profile-pegdown
@@ -186,6 +189,7 @@ jakarta.annotation:jakarta.annotation-api
 jakarta.xml.bind:jakarta.xml.bind-api
 javax.activation:activation
 javax.activation:javax.activation-api
+javax.annotation:javax.annotation-api
 javax.annotation:jsr250-api
 javax.enterprise:cdi-api
 javax.inject:javax.inject
@@ -226,9 +230,13 @@ org.apache.ant:ant-testutil
 org.apache.bcel:bcel
 org.apache.commons:commons-collections4
 org.apache.commons:commons-compress
+org.apache.commons:commons-digester3
 org.apache.commons:commons-lang3
 org.apache.commons:commons-text
 org.apache-extras.beanshell:bsh
+org.apache.httpcomponents.client5:httpclient5
+org.apache.httpcomponents.core5:httpcore5
+org.apache.httpcomponents.core5:httpcore5-h2
 org.apache.httpcomponents:httpclient
 org.apache.httpcomponents:httpcore
 org.apache.jackrabbit:jackrabbit-jcr-commons
@@ -282,6 +290,7 @@ org.apache.maven.plugins:maven-antlr-plugin
 org.apache.maven.plugins:maven-ant-plugin
 org.apache.maven.plugins:maven-antrun-plugin
 org.apache.maven.plugins:maven-archetype-plugin
+org.apache.maven.plugins:maven-artifact-plugin
 org.apache.maven.plugins:maven-assembly-plugin
 org.apache.maven.plugins:maven-changelog-plugin
 org.apache.maven.plugins:maven-changes-plugin
@@ -412,6 +421,7 @@ org.apache.struts:struts-tiles
 org.apache.tomcat.embed:tomcat-embed-core
 org.apache.tomcat.embed:tomcat-embed-el
 org.apache.tomcat.embed:tomcat-embed-websocket
+org.apache.velocity.tools:velocity-tools-generic
 org.apache.velocity:velocity
 org.apache.velocity:velocity-engine-core
 org.apache.velocity:velocity-engine-scripting
@@ -436,6 +446,7 @@ org.bouncycastle:bcpg-jdk15+
 org.bouncycastle:bcpg-jdk15on
 org.bouncycastle:bcpg-jdk15to18
 org.bouncycastle:bcpg-jdk16
+org.bouncycastle:bcpg-jdk18on
 org.bouncycastle:bcpkix-fips
 org.bouncycastle:bcpkix-jdk14
 org.bouncycastle:bcpkix-jdk15on
@@ -457,6 +468,7 @@ org.bouncycastle:bcprov-jdk15+
 org.bouncycastle:bcprov-jdk15on
 org.bouncycastle:bcprov-jdk15to18
 org.bouncycastle:bcprov-jdk16
+org.bouncycastle:bcprov-jdk18on
 org.bouncycastle:bctls-fips
 org.bouncycastle:bctls-jdk14
 org.bouncycastle:bctls-jdk15on
@@ -522,6 +534,7 @@ org.eclipse.jetty:jetty-server
 org.eclipse.jetty:jetty-servlet
 org.eclipse.jetty:jetty-servlets
 org.eclipse.jetty:jetty-util
+org.eclipse.jetty:jetty-util-ajax
 org.eclipse.jetty:jetty-webapp
 org.eclipse.jetty:jetty-xml
 org.eclipse.jgit:org.eclipse.jgit
@@ -658,6 +671,7 @@ org.springframework:spring-web
 org.springframework:spring-webmvc
 org.testng:testng
 org.tukaani:xz
+org.xmlresolver:xmlresolver
 org.xmlunit:xmlunit-core
 org.xmlunit:xmlunit-legacy
 org.yaml:snakeyaml
