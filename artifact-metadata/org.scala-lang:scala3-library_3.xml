@@ -3,8 +3,8 @@
   <groupId>org.scala-lang</groupId>
   <artifactId>scala3-library_3</artifactId>
   <versioning>
-    <latest>3.4.0-RC1-bin-20230810-c90ad6b-NIGHTLY</latest>
-    <release>3.4.0-RC1-bin-20230810-c90ad6b-NIGHTLY</release>
+    <latest>3.5.0-RC1-bin-20240331-cc55381-NIGHTLY</latest>
+    <release>3.5.0-RC1-bin-20240331-cc55381-NIGHTLY</release>
     <versions>
       <version>3.0.0</version>
       <version>3.0.1-RC1</version>
@@ -602,6 +602,10 @@
       <version>3.3.1-RC3</version>
       <version>3.3.1-RC4</version>
       <version>3.3.1-RC5</version>
+      <version>3.3.1-RC6</version>
+      <version>3.3.1-RC7</version>
+      <version>3.3.1</version>
+      <version>3.3.2-RC1</version>
       <version>3.3.2-RC1-bin-20230530-28915c4-NIGHTLY</version>
       <version>3.3.2-RC1-bin-20230531-d0b790e-NIGHTLY</version>
       <version>3.3.2-RC1-bin-20230601-8814760-NIGHTLY</version>
@@ -642,6 +646,11 @@
       <version>3.3.2-RC1-bin-20230722-d0b2151-NIGHTLY</version>
       <version>3.3.2-RC1-bin-20230723-5afe621-NIGHTLY</version>
       <version>3.3.2-RC1-bin-20230724-ce1ce99-NIGHTLY</version>
+      <version>3.3.2-RC2</version>
+      <version>3.3.2-RC3</version>
+      <version>3.3.2</version>
+      <version>3.3.3</version>
+      <version>3.4.0-RC1</version>
       <version>3.4.0-RC1-bin-20230725-18df4ed-NIGHTLY</version>
       <version>3.4.0-RC1-bin-20230726-97677cc-NIGHTLY</version>
       <version>3.4.0-RC1-bin-20230727-ac69c66-NIGHTLY</version>
@@ -656,7 +665,163 @@
       <version>3.4.0-RC1-bin-20230808-512fbd5-NIGHTLY</version>
       <version>3.4.0-RC1-bin-20230809-c5adafc-NIGHTLY</version>
       <version>3.4.0-RC1-bin-20230810-c90ad6b-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230811-fed94f3-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230814-ad6da48-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230815-ca6a80e-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230817-473cf25-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230818-932c10d-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230821-6e370a9-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230822-3783220-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230825-2616c8b-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230828-5318d68-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230829-510aac8-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230830-450d233-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230831-4c77f62-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230901-89e8dba-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230904-6dc3737-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230906-5eb73b6-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230907-08f2faf-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230909-64c3138-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230911-1be790c-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230912-a37dac6-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230920-b1fc943-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230921-3d539e6-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230922-48a7871-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230925-b6e0e9e-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230926-6c05c36-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230927-982c91b-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230928-090710a-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20230929-8020677-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231001-09ea77e-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231002-38ee06e-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231004-1d0bc79-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231006-b1ccc6a-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231009-00180bb-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231010-7dc9798-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231012-242ba21-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231013-8c1cdc2-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231016-69e1338-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231017-af6a2ef-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231018-5f5b517-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231019-3e105f2-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231020-89a8fce-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231023-44a537b-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231024-15033c7-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231025-8046a8b-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231026-94f5cdb-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231027-c0eae68-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231030-e2c9dc0-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231031-58810fd-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231101-e2b38f9-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231102-dc1e35a-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231103-a18ff54-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231104-5454110-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231105-ef97ee2-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231106-f61026d-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231108-e149e4c-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231109-c7b3d7b-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231110-8cb4945-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231113-0dfe593-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231114-18ada51-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231115-0420aaf-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231116-fdf8de3-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231117-5bb6f0d-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231120-12ec5f9-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231121-5d142ff-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231122-637ed88-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231123-00e9e6b-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231124-55c2002-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231127-41e7d95-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231128-fab3f21-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231129-c88c0fe-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231130-4d45087-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231201-d96e9e4-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231204-a3854cb-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231205-7480582-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231206-86565a4-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231207-16f1680-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231208-5a70e5a-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231209-fdd06ce-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231211-feed938-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231212-97e4401-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231213-9dce045-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231214-423cd6c-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231218-ec2b8bc-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231219-eae8831-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231220-d3fafd6-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231221-beaf7b4-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20231223-938d405-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20240103-94e960d-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20240104-2746ee8-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20240105-d2cc3ae-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20240106-c15cc9c-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20240108-65fca39-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20240109-91db06a-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20240112-c50f2ff-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20240114-bfabc31-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20240115-31f837e-NIGHTLY</version>
+      <version>3.4.0-RC1-bin-20240116-78c4da2-NIGHTLY</version>
+      <version>3.4.0-RC2</version>
+      <version>3.4.0-RC3</version>
+      <version>3.4.0-RC4</version>
+      <version>3.4.0</version>
+      <version>3.4.1-RC1</version>
+      <version>3.4.1-RC1-bin-20240122-ca18f4a-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240123-fff24b1-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240124-7c3edc5-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240125-453658b-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240126-1716bcd-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240129-b20747d-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240130-7a5cb6e-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240131-2b40f55-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240201-95266f2-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240202-5850d2d-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240204-2655768-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240205-5c628d9-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240206-cba1cfc-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240207-551eae4-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240208-7bcfce2-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240209-067ec20-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240210-6efcdba-NIGHTLY</version>
+      <version>3.4.1-RC1-bin-20240212-c529a48-NIGHTLY</version>
+      <version>3.4.1-RC2</version>
+      <version>3.4.1</version>
+      <version>3.4.2-RC1</version>
+      <version>3.4.2-RC1-bin-20240213-8776677-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240214-e96cb18-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240215-0800dec-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240216-5bd93b1-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240217-6a795fd-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240219-bbedb45-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240219-9a79c14-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240220-a6df9ca-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240221-e54be6e-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240222-98efdab-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240226-e0cb1e7-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240229-9fe0111-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240301-2cd5721-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240302-c7a0459-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240305-beba585-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240306-cf968a3-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240308-a9bb881-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240308-18645ee-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240310-162b543-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240311-02c2a6e-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240312-3694d95-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240313-4859415-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240314-3d5cf9c-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240316-9ef24bf-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240318-5dc6860-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240319-4554131-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240320-0ea0eba-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240321-a36849f-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240323-bfdd235-NIGHTLY</version>
+      <version>3.4.2-RC1-bin-20240324-a6c40b1-NIGHTLY</version>
+      <version>3.5.0-RC1-bin-20240326-43ed9fd-NIGHTLY</version>
+      <version>3.5.0-RC1-bin-20240327-c251f36-NIGHTLY</version>
+      <version>3.5.0-RC1-bin-20240329-c8c3bde-NIGHTLY</version>
+      <version>3.5.0-RC1-bin-20240331-cc55381-NIGHTLY</version>
     </versions>
-    <lastUpdated>20230811044038</lastUpdated>
+    <lastUpdated>20240401041619</lastUpdated>
   </versioning>
 </metadata>

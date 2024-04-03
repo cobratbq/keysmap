@@ -5,7 +5,8 @@ MAKEFLAGS += --no-builtin-rules
 
 # Composite variables.
 # Note: these variables should not be modified, unless the process fundamentally changes.
-GNUPG_LOCAL=gpg --no-options --no-default-keyring --keyring $(KEYRING) --keyserver hkps://keyserver.ubuntu.com
+#GNUPG_LOCAL=gpg --no-options --no-default-keyring --keyring $(KEYRING) --keyserver hkps://keyserver.ubuntu.com
+GNUPG_LOCAL=gpg --no-options --no-default-keyring --keyring $(KEYRING) --keyserver hkps://keys.openpgp.org
 SSH_VERIFY_SIGNATURE=ssh-keygen -Y verify -f ./signatures/allowed_signers -n file
 
 .SUFFIXES:
